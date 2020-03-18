@@ -1,10 +1,32 @@
+# Over[Arch]ing issue #1
+Disconnecting during an update seemed to cause an issue similar to the one mentioned [here](https://www.reddit.com/r/linuxquestions/comments/e2lr5k/arch_wont_boot_after_upgrade_vmlinuzlinux_missing/). As it states I get the following error on boot:
+```
+Loading Linux linux ...
+error: file '/boot/vmlinuz-linux' not found.
+Loading initial ramdisk ...
+error: you need to load the kernel first.
+```
+
 
 ## Boot to Live USB
-I set mine up the cheap way using this video: https://www.youtube.com/watch?v=uWO3vif7hTw
+I set mine up the cheap way using [this video](https://www.youtube.com/watch?v=uWO3vif7hTw)
 
 After that's done simply bring up your boot menu (For my Dell I spam <kbd>Delete</kbd> until a "bring up single use boot menu"  thing pops up and then spam <kbd>F12</kbd>). Boot into the partition with the Arch USB.
 ## Mount Your Filesystem
 Specifically for my system: `mkdir add; mount /dev/sda2 hdd/; mount /dev/sda1 hdd/boot/; mount /dev/sda3 hdd/home/`
+## Downgrade packages
+Note this didn't actually resolve the issue for me, but it's worth mentioning. First I copied the linux preset for mkinitcpio to my mounted copy of my system, then chroot and downgrade your linux to the last working one
+
+```
+cp /etc/mkinitcpio.d/linux.preset hdd/etc/mkinitcpio.d/linux.preset
+arch-chroot hdd /bin/bash
+cd /var/cache/pacman/pkg/
+pacman -U linux-<version>-x86_64.pkg.tar.xz
+```
+
+I am not running a virtual machine, but an Arch Linux only so the downgrade is more barebones. Check [Downgrading Paackages Wiki](https://wiki.archlinux.org/index.php/Downgrading_packages#Downgrading_the_kernel) for more info. At this point, in theory, you can `exit` and `reboot`.
+
+
 ## Connect to Wifi in Arch-chroot
 If you haven't yet connected to the network (which if you're booting into live USB, you prob haven't): 
 
