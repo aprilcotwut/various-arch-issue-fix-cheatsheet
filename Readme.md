@@ -1,5 +1,8 @@
 
+## Boot to Live USB
+I set mine up the cheap way using this video: https://www.youtube.com/watch?v=uWO3vif7hTw
 
+After that's done simply bring up your boot menu (For my Dell I spam <kbd>Delete</kbd> until a "bring up single use boot menu"  thing pops up and then spam <kbd>F12</kbd>. Boot into the partition with the Arch USB.
 ## Mount Your Filesystem
 Specifically for my system: `mkdir add; mount /dev/sda2 hdd/; mount /dev/sda1 hdd/boot/; mount /dev/sda3 hdd/home/`
 ## Connect to Wifi in Arch-chroot
