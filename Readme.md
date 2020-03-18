@@ -61,8 +61,4 @@ arch-chroot hdd /bin/bash
 ```
 
 ## Upgrading Packages AFTER Connecting to Wifi (See Above)
-After chrooting, go ahead and `ping 8.8.8.8` to check your connection, then update whatever you need with `pacman`. Specifically, I updated everything with 
-`pacman -Syyu` 
-
-
-
+After chrooting, go ahead and `ping 8.8.8.8` to check your connection, then update whatever you need with `pacman`. Specifically, I updated everything with `pacman -Syyu` which upgraded me from the white "Oh no!" screen to a blank grey screen. Still no virtual terminals avaliable. (Removing gnome with `pacman -Rcns gdm gnome` and reinstalling thus far produced the same results)
