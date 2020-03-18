@@ -24,7 +24,7 @@ cd /var/cache/pacman/pkg/
 pacman -U linux-<version>-x86_64.pkg.tar.xz
 ```
 
-I am not running a virtual machine, but an Arch Linux only so the downgrade is more barebones. Check [Downgrading Paackages Wiki](https://wiki.archlinux.org/index.php/Downgrading_packages#Downgrading_the_kernel) for more info. At this point, in theory, you can `exit` and `reboot`.
+I am not running a virtual machine, but an Arch Linux only so the downgrade is more barebones. Check [Downgrading Paackages Wiki](https://wiki.archlinux.org/index.php/Downgrading_packages#Downgrading_the_kernel) for more info. At this point, in theory, you can `exit` and `reboot`. This got me to an "Oh no! Something has gone wrong..." white screen and I could not access the virtual terminals.
 
 
 ## Connect to Wifi in Arch-chroot
@@ -59,5 +59,10 @@ And repeating the process. To test your connection `ping 8.8.8.8` or similar, th
 cp /etc/resolv.conf hdd/etc/resolv.conf
 arch-chroot hdd /bin/bash
 ```
+
+## Upgrading Packages AFTER Connecting to Wifi (See Above)
+After chrooting, go ahead and `ping 8.8.8.8` to check your connection, then update whatever you need with `pacman`. Specifically, I updated everything with 
+`pacman -Syyu` 
+
 
 
