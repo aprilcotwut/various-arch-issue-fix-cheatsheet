@@ -13,7 +13,9 @@ I set mine up the cheap way using [this video](https://www.youtube.com/watch?v=u
 
 After that's done simply bring up your boot menu (For my Dell I spam <kbd>Delete</kbd> until a "bring up single use boot menu"  thing pops up and then spam <kbd>F12</kbd>). Boot into the partition with the Arch USB.
 ## Mount Your Filesystem
-Specifically for my system: `mkdir add; mount /dev/sda2 hdd/; mount /dev/sda1 hdd/boot/; mount /dev/sda3 hdd/home/`
+Specifically for my system: 
+
+`mkdir hdd; mount /dev/sda2 hdd/; mount /dev/sda1 hdd/boot/; mount /dev/sda3 hdd/home/`
 ## Downgrade packages
 Note this didn't actually resolve the issue for me, but it's worth mentioning. First I copied the linux preset for mkinitcpio to my mounted copy of my system, then chroot and downgrade your linux to the last working one
 
