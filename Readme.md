@@ -1,4 +1,6 @@
-# Over[Arch]ing issue #1
+# Over[Arch]ing issues
+Every once in a while I mess up my Arch machine's and after surfing the web long enough and trying 100 different things come to a solution. I'm going to start documenting these issues and how I *approached* fixing them along with the solution so I can use it as a reference later...
+## Issue #1: DC'ed During Arch Update, '/boot/vmlinuz-lunx not found' on Boot
 Disconnecting during an update seemed to cause an issue similar to the one mentioned [here](https://www.reddit.com/r/linuxquestions/comments/e2lr5k/arch_wont_boot_after_upgrade_vmlinuzlinux_missing/). As it states I get the following error on boot:
 ```
 Loading Linux linux ...
@@ -8,15 +10,15 @@ error: you need to load the kernel first.
 ```
 
 
-## Boot to Live USB
+### Boot to Live USB
 I set mine up the cheap way using [this video](https://www.youtube.com/watch?v=uWO3vif7hTw)
 
 After that's done simply bring up your boot menu (For my Dell I spam <kbd>Delete</kbd> until a "bring up single use boot menu"  thing pops up and then spam <kbd>F12</kbd>). Boot into the partition with the Arch USB.
-## Mount Your Filesystem
+### Mount Your Filesystem
 Specifically for my system: 
 
 `mkdir hdd; mount /dev/sda2 hdd/; mount /dev/sda1 hdd/boot/; mount /dev/sda3 hdd/home/`
-## Downgrade packages
+### Downgrade packages
 Note this didn't actually resolve the issue for me, but it's worth mentioning. First I copied the linux preset for mkinitcpio to my mounted copy of my system, then chroot and downgrade your linux to the last working one
 
 ```
@@ -29,7 +31,7 @@ pacman -U linux-<version>-x86_64.pkg.tar.xz
 I am not running a virtual machine, but an Arch Linux only so the downgrade is more barebones. Check [Downgrading Paackages Wiki](https://wiki.archlinux.org/index.php/Downgrading_packages#Downgrading_the_kernel) for more info. At this point, in theory, you can `exit` and `reboot`. This got me to an "Oh no! Something has gone wrong..." white screen and I could not access the virtual terminals.
 
 
-## Connect to Wifi in Arch-chroot
+### Connect to Wifi in Arch-chroot
 If you haven't yet connected to the network (which if you're booting into live USB, you prob haven't): 
 
 `> sudo wifi-menu`
@@ -62,8 +64,8 @@ cp /etc/resolv.conf hdd/etc/resolv.conf
 arch-chroot hdd /bin/bash
 ```
 
-## Upgrading Packages AFTER Connecting to Wifi (See Above)
+### Upgrading Packages AFTER Connecting to Wifi (See Above)
 After chrooting, go ahead and `ping 8.8.8.8` to check your connection, then update whatever you need with `pacman`. Specifically, I updated everything with `pacman -Syyu` which upgraded me from the white "Oh no!" screen to a blank grey screen. Still no virtual terminals avaliable. (Removing gnome with `pacman -Rcns gdm gnome` and reinstalling thus far produced the same results)
 
-## Uninstall Plymouth 
+### Uninstall Plymouth 
 Yeah that was it, that's all that had to happen? Problemo fixed. 
