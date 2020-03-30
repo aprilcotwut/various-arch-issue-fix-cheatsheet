@@ -1,5 +1,5 @@
 # Over[Arch]ing issues
-Every once in a while I mess up my Arch machine's and after surfing the web long enough and trying 100 different things come to a solution. I'm going to start documenting these issues and how I *approached* fixing them along with the solution so I can use it as a reference later...
+Every once in a while I mess up my Arch machine's and after surfing the web long enough and trying 100 different things come to a solution. I'm going to start documenting these issues and how I *approached* fixing them along with the solution so I can use it as a reference later... As this grows I may change it to a wiki.
 ## Issue #1: DC'ed During Arch Update, '/boot/vmlinuz-lunx not found' on Boot
 Disconnecting during an update seemed to cause an issue similar to the one mentioned [here](https://www.reddit.com/r/linuxquestions/comments/e2lr5k/arch_wont_boot_after_upgrade_vmlinuzlinux_missing/). As it states I get the following error on boot:
 ```
